@@ -1,11 +1,13 @@
 import Thought from "../models/thought.js";
 import { Request, Response } from "express";
+import User from "../models/user.js";
 
 export const getThoughts = async (_req: Request, res: Response) => {
 
     try {
         
-        const thoughts = await Thought.find();
+        const thoughts = await Thought.find()
+        .select('-__v');
         res.json(thoughts);
     } catch (err) {
         
@@ -18,6 +20,8 @@ export const getSingleThought = async (req: Request, res: Response) => {
     try {
         
         const thought = await Thought.findById(req.params.thoughtId)
+        .select('-__v')
+        .populate('reactions', '-__v');
         
         if (!thought) {
             res.status(404).json({ message: 'No thought found with that id.' })
@@ -36,6 +40,12 @@ export const createThought = async (req: Request, res: Response) => {
     try {
         
         const thought = await Thought.create(req.body);
+
+        await User.findByIdAndUpdate(
+            req.body.username,
+            { $push: { thoughts: thought._id } },
+            { new: true, runValidators: true }
+          );
         res.json(thought);
     } catch (err) {
         res.status(500).json(err);
@@ -73,7 +83,7 @@ export const deleteThought = async (req: Request, res: Response) => {
             
             res.status(404).json({ message: 'No thought found with that id.' })
         } else {
-            res.json(thought);
+            res.json({ message: 'Thought deleted!' });
         }
     } catch (err) {
         

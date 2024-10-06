@@ -31,7 +31,8 @@ const thoughtSchema = new Schema<IThought>(
     },
     {
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            getters: true
         },
         id: false
     }

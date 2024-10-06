@@ -3,7 +3,8 @@ import { Request, Response } from "express";
 
 export const getUsers = async (_req: Request, res: Response) => {
   try {
-    const users = await User.find();
+    const users = await User.find()
+    .select("-__v");
     res.json(users);
   } catch (err) {
     res.status(500).json(err);
@@ -12,10 +13,10 @@ export const getUsers = async (_req: Request, res: Response) => {
 
 export const getSingleUser = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ _id: req.params.userId }).select("-__v")
-    
+    const user = await User.findOne({ _id: req.params.userId })
     .select("-__v")
-    .populate('friends', '-__v');
+    .populate('friends', '-__v')
+    .populate('thoughts', '-__v');
 
     if (!user) {
       res.status(404).json({ message: "No user with that ID" });
@@ -29,8 +30,8 @@ export const getSingleUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const dbUserData = await User.create(req.body);
-    res.json(dbUserData);
+    const user = await User.create(req.body);
+    res.json(user);
   } catch (err) {
     res.status(500).json(err);
   }
