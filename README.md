@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-This is a backend application that allows you to perform CRUD operations on users, thoughts, and reactions, as well as friends that can be the other users. This app allows you to create real information on a postgresql database and use as an api for real world applications.
+This is a backend application that allows you to perform CRUD operations on users, thoughts, and reactions, as well as friends that can be the other users. This app allows you to create real information on a MongoDB database and use as an api for real world applications.
 
 ## Table of Contents
 - [Installation](#installation)
