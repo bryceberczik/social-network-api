@@ -42,7 +42,8 @@ export const updateUser = async (req: Request, res: Response) => {
     const user = await User.findByIdAndUpdate(req.params.userId, req.body, {
       new: true,
       runValidators: true,
-    });
+    })
+    .select('-__v');
 
     if (!user) {
       res.status(404).json({ message: "No user with that ID" });
@@ -76,7 +77,8 @@ export const addFriend = async (req: Request, res: Response) => {
       userId,
       { $addToSet: { friends: friendId } },
       { new: true, runValidators: true }
-    );
+    )
+    .select('-__v');
 
     if (!user) {
       res.status(404).json({ message: "No user with that ID" });
