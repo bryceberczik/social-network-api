@@ -20,6 +20,16 @@ There are no instructions for testing at this time
 ## Usage
 In order to get the application functional, you can either deploy it and call the api through a fetch request on your personal instance, however you can clone the repo and run a npm i at the root as well as a npm run start. This will turn the server on and be usable through insomnia or any other application of your choice.
 
+![Screenshot 2024-10-13 at 11 47 59 PM](https://github.com/user-attachments/assets/d4a0388c-a3e6-422c-adbb-d2146c4adb7b)
+![Screenshot 2024-10-13 at 11 47 52 PM](https://github.com/user-attachments/assets/b11b289b-f396-4b0f-9222-c484e13811a1)
+![Screenshot 2024-10-13 at 11 47 35 PM](https://github.com/user-attachments/assets/8c659922-c4e5-4fab-b29e-107625388eea)
+
+
+
+https://github.com/user-attachments/assets/376e43eb-f07b-43f8-834a-7c3830c76ff6
+
+
+
 ## License
 This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
